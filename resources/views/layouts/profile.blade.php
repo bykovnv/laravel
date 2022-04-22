@@ -22,9 +22,7 @@
                 <img alt="logo" class="d-inline-block align-top mr-2" src="../img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
-                    </li>
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/edit/{{ Auth::user()->id }}">Редактировать<span class="sr-only">(current)</span></a>
                     </li>
@@ -37,12 +35,15 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/status/{{ Auth::user()->id }}">Изменить статус<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/profiles">Все пользователи<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/create">Добавить пользователя<span class="sr-only">(current)</span></a>
-                    </li>
+                    @if (Auth::user()->role === 'admin')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profiles">Все пользователи<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/create">Добавить пользователя<span class="sr-only">(current)</span></a>
+                        </li>
+                    @endif
+
                 </ul>
                 <ul class="navbar-nav ml-auto">
 

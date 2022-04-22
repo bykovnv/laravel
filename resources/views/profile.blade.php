@@ -2,11 +2,7 @@
 @extends('layouts.profile')
 @section('content')
 
-    @if ($id != $user->id)
-        <script type="text/javascript">
-            window.location = "{{ url('/') }}"
-        </script>
-    @endif
+
     <div class="subheader">
         <h1 class="subheader-title">
             <i class='subheader-icon fal fa-user'></i> Профиль пользователя {{$user->id}}

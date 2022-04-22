@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Password;
 
 class ProfilesController extends Controller
 {
+
     public function index($user)
     {
         return view('home');
@@ -24,9 +25,12 @@ class ProfilesController extends Controller
         $user = User::find($id);
         $authId = Auth::id();
 
+        if($authId != $user->id){
+            abort(403);
+        }
+
         return view('profile', [
-            'user' => $user ,
-            'id' => $authId,
+            'user' => $user,
         ]);
     }
 
@@ -45,6 +49,9 @@ class ProfilesController extends Controller
     public function edit($user)
     {
         $user = User::find($user);
+
+
+
         //dd($user->profile);
         return view('edit', [
             'user' => $user,
