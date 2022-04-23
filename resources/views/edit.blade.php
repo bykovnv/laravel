@@ -8,6 +8,9 @@
             </h1>
 
         </div>
+        @foreach( $errors->all() as $error )
+         <div class="h2"> {{ $error }} </div>
+        @endforeach
         <form method="POST" action="/edit/{{ $user->id }}">
             @csrf
             <div class="row">

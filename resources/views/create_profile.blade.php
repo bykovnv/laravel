@@ -11,6 +11,10 @@
 
 
     </div>
+
+    @foreach( $errors->all() as $error )
+        <div class="h2"> {{ $error }} </div>
+    @endforeach
     <form action="/create/user" enctype="multipart/form-data" method="post">
         @csrf
         <div class="row">

@@ -31,6 +31,7 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="h2"> {{ $errors->first('image') }} </div>
                                 <label class="form-label" for="example-fileinput">Выберите аватар</label>
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>

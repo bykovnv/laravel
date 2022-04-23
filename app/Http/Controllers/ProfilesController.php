@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
-
+use Illuminate\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 
 class ProfilesController extends Controller
@@ -40,7 +41,6 @@ class ProfilesController extends Controller
             ->join('profiles', 'users.id', '=', 'profiles.user_id')
             ->select('*')
             ->get();
-
         return view('profiles', [
             'users' => $users
         ]);
@@ -50,9 +50,6 @@ class ProfilesController extends Controller
     {
         $user = User::find($user);
 
-
-
-        //dd($user->profile);
         return view('edit', [
             'user' => $user,
         ]);
@@ -85,6 +82,9 @@ class ProfilesController extends Controller
 
     public function editUpdate(Request $request, $id)
     {
+        $request->validate([
+            'phone' => 'integer',
+        ]);
 
         DB::table('profiles')
             ->where('user_id', $id)
@@ -93,7 +93,7 @@ class ProfilesController extends Controller
             'adress' => $request->adress,
             'phone' => $request->phone,
             'user_id' => $id,
-                'id' => $id,
+            'id' => $id,
         ]);
 
         DB::table('users')
@@ -106,6 +106,10 @@ class ProfilesController extends Controller
 
     public function mediaUpdate(Request $request, $id)
     {
+        $request->validate([
+            "image" => 'image',
+        ]);
+
         $filename = $request->image->store('uploads');
         DB::table('profiles')
             ->where('id', $id)
@@ -141,7 +145,6 @@ class ProfilesController extends Controller
 
     public function delete($id)
     {
-
         DB::table('users')->where('id', $id)->delete();
         DB::table('profiles')->where('id', $id)->delete();
         return redirect('/profiles');
@@ -154,6 +157,17 @@ class ProfilesController extends Controller
 
     public function createUser(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+
+        Validator::make($input, $rules, $messages = [
+            'required' => ':attribute эти поля обязательны для заполнения.',
+        ]);
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
