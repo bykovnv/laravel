@@ -25,7 +25,7 @@ Route::get('/security/{id}', 'ProfilesController@security')->name('profile.secur
 Route::get('/status/{id}', 'ProfilesController@status')->name('profile.status');
 Route::get('/profile/{id}', 'ProfilesController@profile')->name('profile.id');
 Route::get('/profiles', 'ProfilesController@profiles')->name('profile.all')->middleware('admin');
-Route::get('/create', 'ProfilesController@create')->name('profile.create')->middleware('admin');
+Route::get('/create', 'ProfilesController@create')->name('profile.add')->middleware('admin');
 
 Route::post('/edit/{id}', 'ProfilesController@editUpdate')->name('profile.editUpdate');
 Route::post('/media/{id}', 'ProfilesController@mediaUpdate')->name('profile.media.update');

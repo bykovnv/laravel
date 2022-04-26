@@ -88,7 +88,7 @@ class ProfilesController extends Controller
 
         DB::table('profiles')
             ->where('user_id', $id)
-            ->updateOrInsert([
+            ->update([
             'company' => $request->company,
             'adress' => $request->adress,
             'phone' => $request->phone,
@@ -100,7 +100,7 @@ class ProfilesController extends Controller
             ->where('id', $id)
             ->update(['name' => $request->name,]);
 
-        return redirect('/');
+        return redirect('profile/' . $id)->with('status', 'Профиль обновлен');
 
     }
 
@@ -115,7 +115,7 @@ class ProfilesController extends Controller
             ->where('id', $id)
             ->update(['image' => $filename]);
 
-        return redirect('/');
+        return redirect('profile/' . $id)->with('status', 'Аватар обновлен');
 
     }
 
@@ -140,14 +140,14 @@ class ProfilesController extends Controller
             ->where('id', $id)
             ->update(['status' => $request->status]);
 
-        return redirect('/');
+        return redirect('profile/' . $id)->with('status', 'Статус обновлен');
     }
 
     public function delete($id)
     {
         DB::table('users')->where('id', $id)->delete();
         DB::table('profiles')->where('id', $id)->delete();
-        return redirect('/profiles');
+        return redirect('/profiles' . $id)->with('status', 'Профиль удален');
     }
 
     public function create()
@@ -186,6 +186,8 @@ class ProfilesController extends Controller
                 'id' => $lastId->id,
                 'image' => $filename,
             ]);
+
+        return redirect('profiles/' . $lastId->id)->with('status', 'Профиль добавлен');
     }
 }
 

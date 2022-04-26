@@ -24,23 +24,23 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="/edit/{{ Auth::user()->id }}">Редактировать<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('profile.edit' , Auth::user()->id) }}">Редактировать<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/media/{{ Auth::user()->id }}">Добавить аватар<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('profile.media' , Auth::user()->id) }}">Добавить аватар<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/security/{{ Auth::user()->id }}">Изменить пароль<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('profile.security' , Auth::user()->id) }}">Изменить пароль<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/status/{{ Auth::user()->id }}">Изменить статус<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('profile.status' , Auth::user()->id) }}">Изменить статус<span class="sr-only">(current)</span></a>
                     </li>
                     @if (Auth::user()->role === 'admin')
                         <li class="nav-item active">
-                            <a class="nav-link" href="/profiles">Все пользователи<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('profile.all')}}">Все пользователи<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/create">Добавить пользователя<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('profile.add')}}">Добавить пользователя<span class="sr-only">(current)</span></a>
                         </li>
                     @endif
 
