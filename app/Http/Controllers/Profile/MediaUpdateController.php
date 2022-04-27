@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use App\Http\Requests\Profile\MediaRequest;
 use Illuminate\Support\Facades\DB;
 
 
@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class MediaUpdateController extends Controller
 {
-    public function __invoke(Request $request, $id)
+    public function __invoke(MediaRequest $request, $id)
     {
-        $request->validate([
-            "image" => 'image',
-        ]);
+        $request->validated();
 
         $filename = $request->image->store('uploads');
         DB::table('profiles')
