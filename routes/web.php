@@ -13,26 +13,41 @@
 
 use Illuminate\Http\Request;
 
+Route::group(['namespace' => 'Profile'], function () {
+    Route::get('/profile/{id}', 'ProfileController')->name('profile.id');
+    Route::get('/edit/{id}', 'EditController')->name('profile.edit');
+    Route::get('/media/{id}', 'MediaController')->name('profile.media');
+    Route::get('/security/{id}', 'SecurityController')->name('profile.security');;
+    Route::get('/status/{id}', 'StatusController')->name('profile.status');
+
+    Route::post('/edit/{id}', 'EditUpdateController')->name('profile.editUpdate');
+    Route::post('/media/{id}', 'MediaUpdateController')->name('profile.media.update');
+    Route::post('/security/{id}', 'SecurityUpdateController')->name('profile.security.update');
+    Route::post('/status/{id}', 'StatusUpdateController')->name('profile.status.update');
+});
 
 Route::redirect('/', '/login');
-Route::get('/home', 'ProfilesController@profile')->name('profile.id');
+
 
 Auth::routes();
 
-Route::get('/edit/{id}', 'ProfilesController@edit')->name('profile.edit');
-Route::get('/media/{id}', 'ProfilesController@media')->name('profile.media');
-Route::get('/security/{id}', 'ProfilesController@security')->name('profile.security');;
-Route::get('/status/{id}', 'ProfilesController@status')->name('profile.status');
-Route::get('/profile/{id}', 'ProfilesController@profile')->name('profile.id');
-Route::get('/profiles', 'ProfilesController@profiles')->name('profile.all')->middleware('admin');
-Route::get('/create', 'ProfilesController@create')->name('profile.add')->middleware('admin');
+Route::middleware(['admin'])->group(function () {
 
-Route::post('/edit/{id}', 'ProfilesController@editUpdate')->name('profile.editUpdate');
-Route::post('/media/{id}', 'ProfilesController@mediaUpdate')->name('profile.media.update');
-Route::post('/security/{id}', 'ProfilesController@securityUpdate')->name('profile.security.update');
-Route::post('/status/{id}', 'ProfilesController@statusUpdate')->name('profile.status.update');
-Route::get('/delete/{id}', 'ProfilesController@delete')->name('profile.delete')->middleware('admin');;
-Route::post('/create/user', 'ProfilesController@createUser')->name('profile.create')->middleware('admin');;
+    Route::get('/profiles', 'Profile\AllProfilesController')->name('profile.all');
+    Route::get('/create', 'Profile\CreateController')->name('profile.add');
+    Route::get('/delete/{id}', 'Profile\DeleteController')->name('profile.delete');
+    Route::post('/create/user', 'Profile\CreateProfileController')->name('profile.create');
+
+    });
+
+//Route::get('/profiles', 'ProfilesController@profiles')->name('profile.all')->middleware('admin');
+//Route::get('/create', 'ProfilesController@create')->name('profile.add')->middleware('admin');
+//Route::get('/delete/{id}', 'ProfilesController@delete')->name('profile.delete')->middleware('admin');
+//Route::post('/create/user', 'ProfilesController@createUser')->name('profile.create')->middleware('admin');
+
+
+
+
 
 
 
