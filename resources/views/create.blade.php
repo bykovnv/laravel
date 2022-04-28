@@ -6,7 +6,7 @@
 
 </div>
 
-<form method="POST" action="/createuser">
+<form method="POST" action="/create/user">
     <div class="row">
         <div class="col-xl-6">
             <div id="panel-1" class="panel">

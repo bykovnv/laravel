@@ -4,18 +4,12 @@ namespace App\Http\Controllers\Profile;
 
 use App\User;
 
-use Illuminate\Routing\Controller;
-
-
-
-
-class MediaController extends Controller
+class MediaController extends BaseController
 {
     public function __invoke($id)
     {
-        $user = User::find($id);
         return view('media', [
-            'user' => $user,
+            'user' => $user = User::find($id),
         ]);
     }
 }

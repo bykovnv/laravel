@@ -13,9 +13,8 @@ class SecurityController extends Controller
 {
     public function __invoke($id)
     {
-        $user = User::find($id);
         return view('security', [
-            'user' => $user,
+            'user' => User::find($id),
         ]);
     }
 }

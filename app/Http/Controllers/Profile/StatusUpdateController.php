@@ -11,16 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 
 
-class StatusUpdateController extends Controller
+class StatusUpdateController extends BaseController
 {
     public function __invoke(Request $request, $id)
     {
-        DB::table('profiles')
-            ->where('id', $id)
-            ->update(['status' => $request->status]);
-
+        $this->service->statusUpdate($request, $id);
         return redirect('profile/' . $id)->with('status', 'Статус обновлен');
-
     }
 }
 

@@ -13,9 +13,8 @@ class StatusController extends Controller
 {
     public function __invoke($id)
     {
-        $user = User::find($id);
         return view('status', [
-            'user' => $user,
+            'user' => User::find($id),
         ]);
     }
 }

@@ -3,50 +3,16 @@
 namespace App\Http\Controllers\Profile;
 
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Validator;
+use App\Http\Requests\Profile\CreateRequest;
 
 
-
-class CreateProfileController extends Controller
+class CreateProfileController extends BaseController
 {
-    public function __invoke(Request $request)
+    public function __invoke(CreateRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
-        ]);
-
-
-        Validator::make($input, $rules, $messages = [
-            'required' => ':attribute эти поля обязательны для заполнения.',
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $lastId = DB::table('users')->latest('id')->first();
-        $filename = $request->image->store('uploads');
-
-        DB::table('profiles')
-            ->insert([
-                'company' => $request->company,
-                'adress' => $request->adress,
-                'phone' => $request->phone,
-                'user_id' => $lastId->id,
-                'id' => $lastId->id,
-                'image' => $filename,
-            ]);
-
+        $request->validated($request);
+        $this->service->createProfile($request);
         return redirect('profiles/' . $lastId->id)->with('status', 'Профиль добавлен');
-
     }
 }
 

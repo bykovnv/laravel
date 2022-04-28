@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use App\User;
 
-
 class AllProfilesController extends BaseController
 {
     public function __invoke()

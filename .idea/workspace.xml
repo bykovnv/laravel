@@ -2,12 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7fbfb16-2d1e-4016-8c6d-effb6a8fdea4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/BaseController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Profiles/Service.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/AllProfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/AllProfilesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/CreateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/CreateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/CreateProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/CreateProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/DeleteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/DeleteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/EditController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/EditController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/EditUpdateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/EditUpdateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/MediaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/MediaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/MediaUpdateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/MediaUpdateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProfilesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/StatusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/StatusController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/StatusUpdateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/StatusUpdateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Profiles/Service.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Profiles/Service.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +192,9 @@
       <workItem from="1650692192697" duration="6277000" />
       <workItem from="1650946124573" duration="2717000" />
       <workItem from="1650984476001" duration="1451000" />
-      <workItem from="1651032845229" duration="6710000" />
+      <workItem from="1651032845229" duration="7379000" />
+      <workItem from="1651071823199" duration="2986000" />
+      <workItem from="1651118492608" duration="912000" />
     </task>
     <servers />
   </component>
@@ -206,6 +219,10 @@
           <url>file://$PROJECT_DIR$/resources/views/profiles.blade.php</url>
           <line>17</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Profile/AllProfilesController.php</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

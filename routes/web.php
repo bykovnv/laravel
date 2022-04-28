@@ -40,10 +40,6 @@ Route::middleware(['admin'])->group(function () {
 
     });
 
-//Route::get('/profiles', 'ProfilesController@profiles')->name('profile.all')->middleware('admin');
-//Route::get('/create', 'ProfilesController@create')->name('profile.add')->middleware('admin');
-//Route::get('/delete/{id}', 'ProfilesController@delete')->name('profile.delete')->middleware('admin');
-//Route::post('/create/user', 'ProfilesController@createUser')->name('profile.create')->middleware('admin');
 
 
 
