@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-
+/**
+ * Контроллер по смене пароля
+ */
 class SecurityUpdateController extends BaseController
 {
     public function __invoke(Request $request, $id)

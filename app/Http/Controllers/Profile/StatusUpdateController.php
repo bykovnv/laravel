@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
-use Illuminate\Support\Facades\DB;
-
-
-
-
+/**
+ * Контроллер по смене статуса
+ * @request данные из формы
+ * @id пользователя
+ * Вносим статус в базу
+ * Переадресовываем на страницу профиля
+ * Выводим флеш сообщение
+ */
 class StatusUpdateController extends BaseController
 {
     public function __invoke(Request $request, $id)

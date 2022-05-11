@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-
+    // Константы для статуса
     const STATUS_OFFLINE = 0;
     const STATUS_ONLINE = 1;
 
+    // Статический метод для удобного вывода в шаблоне
     public static function getStatus()
     {
         return [
@@ -18,6 +19,7 @@ class Profile extends Model
         ];
     }
 
+    // Константы для ролей
     const ROLE_ADMIN = 1;
     const ROLE_USER = 5;
 
