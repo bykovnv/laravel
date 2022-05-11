@@ -16,8 +16,9 @@ class ControllerTest extends TestCase
 {
 
 
-
-
+    /**
+     *  Хелпер для вход на сайт
+     */
     public function loginAuth()
     {
         $this->post('/login', [
@@ -27,9 +28,7 @@ class ControllerTest extends TestCase
     }
 
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     *  Проверка на удачный вход существующему логину и паролю
      */
     public function testAuth()
     {
@@ -38,7 +37,9 @@ class ControllerTest extends TestCase
         $response->assertOk();
     }
 
-
+    /**
+     *  Проверка на запрет просмотра профиля , если неправильно введен логин или пароль
+     */
     public function testFailedAuth()
     {
         $this->post('/login', [
@@ -49,14 +50,16 @@ class ControllerTest extends TestCase
         $response->assertForbidden();
     }
 
-
+    /**
+     * Тест на проверку изменения данных в профиле.
+     * После ввода данных в форму, мы должны увидеть текст, который мы ввели в форму.
+     */
     public function testEditProfile()
     {
         $this->loginAuth();
-
         DB::table('profiles')
             ->where('user_id', 1)
-            ->updateOrInsert([
+            ->update([
                 'company' => "Yandex",
                 'adress' => "Russia, Moscow",
                 'phone' => 8495644879,
@@ -72,18 +75,80 @@ class ControllerTest extends TestCase
         $response->assertSee('Yandex');
     }
 
-//    public function testFailedPhoneEditProfile()
-//    {
-//        $this->loginAuth();
-//
-//        $this->post('/edit/1', [
-//            'email' => 'doodee@doodee.ru',
-//            'password' => 'doodee@doodee.ru'
-//        ]);
-//
-//        $response = $this->get('edit/1');
-//        $response->assertSee('The phone must be an integer.');
-//    }
+    /**
+     * Тест на валидацию телефона
+     * Телефон должен быть типом integer
+     */
+    public function testFailedPhoneEditProfile()
+    {
+        $this->loginAuth();
 
+        $this->post('/edit/1', [
+            'company' => "Yandex",
+            'adress' => "Russia, Moscow",
+            'phone' => 'dsad',
+        ]);
+
+        $response = $this->get('edit/1');
+        $response->assertSee('The phone must be an integer.');
+    }
+
+    /**
+     * Проверка на загрузку картинки
+     * После отправки картинки, на странице профиля. мы ее найдем по названию
+     */
+    public function testImageUploadProfile()
+    {
+        $this->loginAuth();
+        $filename = "uploads/0ojHe76OJWVlhaj0CNYmOupo7XnuW9S9tsMwkMfH.png";
+        DB::table('profiles')
+            ->where('id', 1)
+            ->update(['image' => $filename]);
+
+        $response = $this->get('/profile/1');
+        $response->assertSee('0ojHe76OJWVlhaj0CNYmOupo7XnuW9S9tsMwkMfH');
+    }
+
+    /**
+     * Проверка на валидацию картинки
+     * Пробую передать строку, получается ответ что картинка должна быть картинкой
+     */
+    public function testFailedImageUploadProfile()
+    {
+        $this->loginAuth();
+        $this->post('/media/1', [
+            'image' => "Yandex",
+        ]);
+
+        $response = $this->get('/media/1');
+        $response->assertSee('The image must be an image.');
+    }
+
+    /**
+     * Проверка на смену статуса
+     * После смены статусы мы должны увить его текущий статус
+     */
+    public function testStatusUpdate()
+    {
+        $this->loginAuth();
+        $this->post('/status/1' , [
+            'status' => 1,
+        ]);
+        $response = $this->get('/status/1');
+        $response->assertSee('Текущий статус 1');
+
+    }
+
+    /**
+     * Проверка на доступ ко всем профилям
+     * Только admin, может смотреть все профили
+     * По умолчанию все заарегистрированные пользователи получают роль guest
+     */
+    public function testAccessProfiles()
+    {
+        $this->loginAuth();
+        $response = $this->get('/profiles');
+        $response->assertStatus(403);
+    }
 
 }

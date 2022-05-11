@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\User;
 
 class ProfilesController extends BaseController
 {
+    /**
+     * Контроллер вывовода всех профилей
+     */
     public function __invoke()
     {
         return view('profiles', [

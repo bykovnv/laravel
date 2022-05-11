@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\User;
 
 class ProfileController extends BaseController
 {
+    /**
+     * @param $id пользователя
+     * url страницы /profile/1
+     */
     public function __invoke($id)
     {
         return view('profile', [

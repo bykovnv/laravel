@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\User;
+/**
+ * Удаляем пользователя
+ */
 
 class DeleteController extends BaseController
 {
